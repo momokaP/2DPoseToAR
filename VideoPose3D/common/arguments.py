@@ -10,6 +10,10 @@ import argparse
 def parse_args():
     parser = argparse.ArgumentParser(description='Training script')
 
+    # 커스텀 수정, data로 고정된 파일 경로를 다른 경로로도 지정할 수 있도록 추가. 
+    parser.add_argument('--datapath', default='data', type=str, metavar='PATH',
+                    help='folder where the dataset files are located')
+
     # General arguments
     parser.add_argument('-d', '--dataset', default='h36m', type=str, metavar='NAME', help='target dataset') # h36m or humaneva
     parser.add_argument('-k', '--keypoints', default='cpn_ft_h36m_dbb', type=str, metavar='NAME', help='2D detections to use')

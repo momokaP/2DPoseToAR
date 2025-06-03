@@ -1,6 +1,12 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+import os
+import sys
+from glob import glob
+import argparse
+import subprocess
+
 
 def mediapipe_to_coco_keypoints(mp_landmarks, image_width, image_height):
     # MediaPipe → COCO 매핑 인덱스
@@ -33,9 +39,9 @@ def mediapipe_to_coco_keypoints(mp_landmarks, image_width, image_height):
         y.append(l.y * image_height)
         conf.append(l.visibility)  # 신뢰도
 
-    dummy = [0.0] * len(x)  # dummy Z 또는 logit
+    dummy = [0.0] * len(x)  # dummy
 
-    return np.array([x, y, dummy, conf], dtype=np.float32)  # shape: (4, 17)
+    return np.array([x, y, dummy, conf], dtype=np.float32)
 
 def extract_keypoints_and_boxes(video_path):
     mp_pose = mp.solutions.pose
@@ -62,33 +68,16 @@ def extract_keypoints_and_boxes(video_path):
         if results.pose_landmarks:
             landmarks = results.pose_landmarks.landmark
 
+            # key points
             keypoint_frame = mediapipe_to_coco_keypoints(landmarks, frame_width, frame_height)
             frame_keypoints = [[], np.array([keypoint_frame])]
-            #frame_keypoints = [[], keypoint_frame]  # shape: (1, 4, 17)
 
-            # bounding box 계산
+            # bounding box
             x_min, x_max = keypoint_frame[0].min(), keypoint_frame[0].max()
             y_min, y_max = keypoint_frame[1].min(), keypoint_frame[1].max()
             score_mean = np.mean(keypoint_frame[3])
             box = np.array([[x_min, y_min, x_max, y_max, score_mean]], dtype=np.float32)
             frame_boxes = [[], box]
-
-            # # keypoints: [x, y, dummy, score]
-            # x_coords = np.array([l.x * frame_width for l in landmarks], dtype=np.float32)
-            # y_coords = np.array([l.y * frame_height for l in landmarks], dtype=np.float32)
-            # scores = np.array([l.visibility for l in landmarks], dtype=np.float32)
-
-            # dummy = np.zeros_like(scores)
-
-            # keypoint_frame = np.stack([x_coords, y_coords, dummy, scores], axis=0)
-            # frame_keypoints = [keypoint_frame]  # shape: (1, 4, N)
-            
-            # # bounding box [x1, y1, x2, y2, confidence]
-            # x_min, x_max = x_coords.min(), x_coords.max()
-            # y_min, y_max = y_coords.min(), y_coords.max()
-            # box = np.array([[x_min, y_min, x_max, y_max, scores.mean()]], dtype=np.float32)
-            # frame_boxes = [[], box]  # mimic Detectron2 format
-
         else:
             frame_keypoints = [[], []]
             frame_boxes = [[], []]
@@ -101,7 +90,6 @@ def extract_keypoints_and_boxes(video_path):
     cap.release()
     return boxes, keypoints, segments, {'w': frame_width, 'h': frame_height}
 
-
 def save_to_npz(out_path, boxes, keypoints, segments, metadata):
     np.savez_compressed(
         out_path,
@@ -111,10 +99,77 @@ def save_to_npz(out_path, boxes, keypoints, segments, metadata):
         metadata=metadata
     )
 
-
 if __name__ == "__main__":
     video = './VideoPose3D/inference/input_directory/output.mp4'
-    output = 'my_video1234.npz'
+    output = 'my_test1234.npz'
 
     boxes, keypoints, segments, metadata = extract_keypoints_and_boxes(video)
     save_to_npz(output, boxes, keypoints, segments, metadata)
+
+    #############################################
+    #############################################
+
+    # 현재 파일 기준으로 VideoPose3D/data 경로 추가
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(current_dir, 'VideoPose3D', 'data')
+    if data_dir not in sys.path:
+        sys.path.insert(0, data_dir)
+
+    from prepare_data_2d_custom import decode
+    from prepare_data_2d_custom import output_prefix_2d
+    from data_utils import suggest_metadata
+
+    input_file = output #'/absolute/path/to/your/file.npz'     # 1개의 .npz 파일
+    output_suffix = 'test1234'                # 출력 파일 이름 접미사
+
+    if not os.path.isfile(input_file):
+        print(f'[ERROR] 입력 파일이 존재하지 않습니다: {input_file}')
+        exit(1)
+
+    print('Parsing 2D detections from:', input_file)
+
+    metadata = suggest_metadata('coco')
+    metadata['video_metadata'] = {}
+
+    canonical_name = os.path.splitext(os.path.basename(input_file))[0]
+    data, video_metadata = decode(input_file)
+
+    output = {
+        canonical_name: {
+            'custom': [data[0]['keypoints'].astype('float32')]
+        }
+    }
+    metadata['video_metadata'][canonical_name] = video_metadata
+
+    print('Saving...')
+    np.savez_compressed(output_prefix_2d + output_suffix, positions_2d=output, metadata=metadata)
+    print(f'Done. Saved to {output_prefix_2d + output_suffix}')
+
+    #############################################
+    #############################################
+
+    runpy_dir = os.path.join(current_dir, 'VideoPose3D')
+    # runpy_dir = '/absolute/path/to/VideoPose3D'  # run.py가 있는 폴더
+    output_video = 'output.mp4'
+    output_positions = 'output'
+
+    # 명령어를 문자열 리스트로 구성
+    cmd = [
+        'python', 'run.py', # 고정
+        '--datapath', current_dir,
+        '-d', 'custom', # 고정
+        '-k', output_suffix,
+        '-arc', '3,3,3,3,3',
+        '-c', 'checkpoint', # 고정
+        '--evaluate', 'pretrained_h36m_detectron_coco.bin', # 고정
+        '--render', # 고정
+        '--viz-subject', 'my_test1234',
+        '--viz-action', 'custom', # 고정
+        '--viz-camera', '0', # 고정
+        #'--viz-output', os.path.join(current_dir, output_video),
+        '--viz-export', os.path.join(current_dir, output_positions),
+        '--viz-size', '6',
+    ]
+
+    # 실행
+    subprocess.run(cmd, cwd=runpy_dir)

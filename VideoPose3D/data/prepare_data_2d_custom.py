@@ -33,7 +33,7 @@ def decode(filename):
         best_match = np.argmax(bb[i][1][:, 4])
         best_bb = bb[i][1][best_match, :4]
         best_kp = kp[i][1][best_match].T.copy()
-        print(f"Frame {i} keypoint shape:", kp[i][1][best_match].shape)
+        # print(f"Frame {i} keypoint shape:", kp[i][1][best_match].shape)
         results_bb.append(best_bb)
         results_kp.append(best_kp)
         

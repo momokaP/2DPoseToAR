@@ -44,7 +44,14 @@ elif args.dataset.startswith('humaneva'):
     dataset = HumanEvaDataset(dataset_path)
 elif args.dataset.startswith('custom'):
     from common.custom_dataset import CustomDataset
-    dataset = CustomDataset('data/data_2d_' + args.dataset + '_' + args.keypoints + '.npz')
+    # dataset = CustomDataset('data/data_2d_' + args.dataset + '_' + args.keypoints + '.npz')
+    
+    # 커스텀 수정, data로 고정된 파일 경로를 다른 경로로도 지정할 수 있도록 추가.
+    # 이번 프로젝트에서는 'CustomDataset'만 사용할 것이므로 이 장소에만 추가.
+    # 이후에 'Human36mDataset'이나 'HumanEvaDataset'을 사용하게 된다면 해당 장소에도 추가 고려.
+    dataset_path = os.path.join(args.datapath, f'data_2d_{args.dataset}_{args.keypoints}.npz')
+    dataset = CustomDataset(dataset_path)
+
 else:
     raise KeyError('Invalid dataset')
 
@@ -62,7 +69,12 @@ for subject in dataset.subjects():
             anim['positions_3d'] = positions_3d
 
 print('Loading 2D detections...')
-keypoints = np.load('data/data_2d_' + args.dataset + '_' + args.keypoints + '.npz', allow_pickle=True)
+
+# keypoints = np.load('data/data_2d_' + args.dataset + '_' + args.keypoints + '.npz', allow_pickle=True)
+# 커스텀 수정, data로 고정된 파일 경로를 다른 경로로도 지정할 수 있도록 추가.
+dataset_path = os.path.join(args.datapath, f'data_2d_{args.dataset}_{args.keypoints}.npz')
+keypoints = np.load(dataset_path, allow_pickle=True)
+
 keypoints_metadata = keypoints['metadata'].item()
 keypoints_symmetry = keypoints_metadata['keypoints_symmetry']
 kps_left, kps_right = list(keypoints_symmetry[0]), list(keypoints_symmetry[1])
