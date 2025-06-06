@@ -100,8 +100,8 @@ def save_to_npz(out_path, boxes, keypoints, segments, metadata):
     )
 
 if __name__ == "__main__":
-    video = './VideoPose3D/inference/input_directory/output.mp4'
-    output = 'my_test1234.npz'
+    video = './video/dance1.mp4'
+    output = 'dance1.npz'
 
     boxes, keypoints, segments, metadata = extract_keypoints_and_boxes(video)
     save_to_npz(output, boxes, keypoints, segments, metadata)
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     from data_utils import suggest_metadata
 
     input_file = output #'/absolute/path/to/your/file.npz'     # 1개의 .npz 파일
-    output_suffix = 'test1234'                # 출력 파일 이름 접미사
+    output_suffix = 'dance1'                # 출력 파일 이름 접미사
 
     if not os.path.isfile(input_file):
         print(f'[ERROR] 입력 파일이 존재하지 않습니다: {input_file}')
@@ -150,8 +150,8 @@ if __name__ == "__main__":
 
     runpy_dir = os.path.join(current_dir, 'VideoPose3D')
     # runpy_dir = '/absolute/path/to/VideoPose3D'  # run.py가 있는 폴더
-    output_video = 'output.mp4'
-    output_positions = 'output'
+    output_video = 'dance1.mp4'
+    output_positions = 'dance1'
 
     # 명령어를 문자열 리스트로 구성
     cmd = [
@@ -163,10 +163,10 @@ if __name__ == "__main__":
         '-c', 'checkpoint', # 고정
         '--evaluate', 'pretrained_h36m_detectron_coco.bin', # 고정
         '--render', # 고정
-        '--viz-subject', 'my_test1234',
+        '--viz-subject', 'dance1',
         '--viz-action', 'custom', # 고정
         '--viz-camera', '0', # 고정
-        #'--viz-output', os.path.join(current_dir, output_video),
+        '--viz-output', os.path.join(current_dir, output_video),
         '--viz-export', os.path.join(current_dir, output_positions),
         '--viz-size', '6',
     ]

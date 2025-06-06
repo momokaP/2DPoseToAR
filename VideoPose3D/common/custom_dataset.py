@@ -27,7 +27,7 @@ custom_camera_params = {
 class CustomDataset(MocapDataset):
     def __init__(self, detections_path, remove_static_joints=True):
         # super().__init__(fps=None, skeleton=h36m_skeleton)        
-        super().__init__(fps=5, skeleton=h36m_skeleton)
+        super().__init__(fps=50, skeleton=h36m_skeleton)
         
         # Load serialized dataset
         data = np.load(detections_path, allow_pickle=True)
