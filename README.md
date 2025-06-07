@@ -32,7 +32,7 @@
  
 #### 사용 방법
 - BVHConverter.py를 실행하고 포즈 영상 파일 경로를 선택한다.
--
+
 - (mediapipe를 import 할때 시간이 오래 걸려서 실행 시간이 오래 걸린다.)
 
 ![111](https://github.com/user-attachments/assets/e60c608e-6dd1-425b-939a-79e43729c051)
