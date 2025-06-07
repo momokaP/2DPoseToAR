@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import math
+import ast
 
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenImage import OnscreenImage
@@ -188,6 +189,11 @@ class AxisDemo(ShowBase):
         # 연속 입력 처리를 위한 task 추가
         self.taskMgr.add(self.handle_key_input, "handle_key_input_task")
 
+        # print(self.K)
+        # print(self.dist_coeff)
+        # print(self.board_pattern)
+        # print(self.board_cellsize)
+
     def set_key(self, key, value):
         self.key_map[key] = value
 
@@ -219,13 +225,13 @@ class AxisDemo(ShowBase):
         current_scale = self.panda.getScale()
         new_scale = current_scale * factor
         self.panda.setScale(new_scale)
-        print(f"Scale changed to: {new_scale}")
+        # print(f"Scale changed to: {new_scale}")
 
     def move_character(self, dx, dy, dz):
         current_pos = self.panda.getPos()
         new_pos = current_pos + (dx, dy, dz)
         self.panda.setPos(new_pos)
-        print(f"Moved to: {new_pos}")
+        # print(f"Moved to: {new_pos}")
 
     def reset_transformations(self):
         self.panda.setScale(self.initial_scale)
@@ -233,11 +239,11 @@ class AxisDemo(ShowBase):
         self.panda.setHpr(0, 0, 0)
         self.camera.setPos(0, 0, 0)
         self.camera.lookAt(0, 1, 0)
-        print("Transformations reset.")
+        # print("Transformations reset.")
 
     def toggle_pause(self):
         self.is_paused = not self.is_paused
-        print("Paused" if self.is_paused else "Resumed")
+        # print("Paused" if self.is_paused else "Resumed")
 
         if self.is_paused:
             self.saved_frame = self.panda.getCurrentFrame(self.animation)
@@ -382,31 +388,44 @@ class AxisDemo(ShowBase):
 
         # return task.cont
         return task.again if not self.is_paused else task.cont
+    
+def load_config_from_txt(path):
+    with open(path, 'r') as f:
+        lines = f.readlines()
+
+    config = {}
+    for line in lines:
+        if '=' in line:
+            key, val = line.strip().split('=', 1)
+            config[key.strip()] = ast.literal_eval(val.strip())
+    return config
 
 def Show_AR(
     video_path1=None,
     gltf_path1=None,
     animation1=None,
     ShowAxis1=True,
-    K=None,
-    dist_coeff=None,
-    board_pattern=(10, 7),
-    board_cellsize=0.023
+    config_path="config.txt"
 ):
+    config = load_config_from_txt(config_path)
+
     app = AxisDemo(
         video_path=video_path1,
         gltf_path=gltf_path1,
         animation=animation1,
         ShowAxis=ShowAxis1,
-        K=K,
-        dist_coeff=dist_coeff,
-        board_pattern=board_pattern,
-        board_cellsize=board_cellsize
+        K=np.array(config["K"]),
+        dist_coeff=np.array(config["dist_coeff"]),
+        board_pattern=tuple(config["board_pattern"]),
+        board_cellsize=config["board_cellsize"]
     )
     app.run()
 
-if __name__ == "__main__":
-    Show_AR('./calv2-1.mp4', 
-            'prototypetest1.gltf',
-            'dance',
-            True)
+if __name__ == "__main__":  
+    Show_AR(
+        video_path1="./calv2-1.mp4",
+        gltf_path1="./prototypetest1.gltf",
+        animation1="dance",
+        ShowAxis1=True,
+        config_path="config.txt"
+    )

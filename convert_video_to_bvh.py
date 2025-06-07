@@ -132,6 +132,8 @@ def extract_keypoints_and_boxes(video_path):
     return boxes, keypoints, segments, {'w': frame_width, 'h': frame_height}
 
 def Format_Conversion(__file__, output, suffix):
+    # https://github.com/facebookresearch/VideoPose3D/blob/main/data/prepare_data_2d_custom.py 코드 참고
+    
     # 현재 파일 기준으로 VideoPose3D/data 경로 추가
     current_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(current_dir, 'VideoPose3D', 'data')
