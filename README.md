@@ -3,6 +3,10 @@
 - 애니메이션이 적용된 3D 캐릭터를 AR로 보여줍니다.
 - BVHConverter.py, ARCalib.py 파일을 통하여 기능을 제공합니다.
 
+https://github.com/user-attachments/assets/02e9fef5-e99a-49d6-b55c-15709aeda32d
+
+https://github.com/user-attachments/assets/653508fd-b959-4afa-9edd-850a9e2022b1
+
 # 주요 기능
 - [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko), [VideoPose3D](https://github.com/facebookresearch/VideoPose3D)를 이용하여 사람이 나오는 영상으로부터 3D 관절 좌표를 추출하여 .bvh 파일을 생성합니다.
 
