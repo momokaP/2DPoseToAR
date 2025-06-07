@@ -138,6 +138,28 @@ board_cellsize=0.023
 
 
 # 참고자료/reference
+[mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko)의 기능을 사용하였다.
+
+[VideoPose3D](https://github.com/facebookresearch/VideoPose3D)의 코드 일부를 수정, 참고하여 사용하였다.
+([convert_video_to_bvh.py](https://github.com/momokaP/2DPoseToAR/blob/main/convert_video_to_bvh.py)의 Format_Conversion 함수)
+
+[VideoTo3dPoseAndBvh](https://github.com/HW140701/VideoTo3dPoseAndBvh/tree/master)의 코드를 참고하여 사용하였다.
+[bvh_skeleton](https://github.com/HW140701/VideoTo3dPoseAndBvh/tree/master/bvh_skeleton)의 일부 코드들을 import 하였고,
+[videopose.py](https://github.com/HW140701/VideoTo3dPoseAndBvh/blob/master/videopose.py)를 참고하여 [convert_video_to_bvh.py](https://github.com/momokaP/2DPoseToAR/blob/main/convert_video_to_bvh.py)의 write_standard_bvh 함수를 작성하였다.
+
+[Visual-Copmuting](https://github.com/tgt5248/Visual-Copmuting/tree/main)의 코드를 참고하였다.
+[panda3d.py](https://github.com/tgt5248/Visual-Copmuting/blob/main/Ar_application/panda3d.py)의 코드를 참고하여
+[show_ar.py](https://github.com/momokaP/2DPoseToAR/blob/main/show_ar.py)를 작성하였다.
+
+[https://github.com/mint-lab/3dv_tutorial/blob/master/examples/camera_calibration.py](https://github.com/mint-lab/3dv_tutorial/blob/master/examples/camera_calibration.py)의 코드를 참고하여 [Camera_Calibration.py](https://github.com/momokaP/2DPoseToAR/blob/main/Camera_Calibration.py)을 작성하였다.
+
+본 프로젝트에서 쓰인 영상은
+
+[Squat.mp4](https://commons.wikimedia.org/wiki/File:Squat_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
+
+[Deadlift.mp4](https://commons.wikimedia.org/wiki/File:Deadlift_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
+
+의 것을 사용하였다
 
 
 # 향후 개선 사항
@@ -148,3 +170,5 @@ board_cellsize=0.023
   특히 카메라에서 roll이 발생할 때 좌표계의 차이가 두드러진다.
 
   이러한 좌표계의 차이점을 개선시켜야한다.
+
+- 현재는 한사람의 정적인 움직임만 잘 반영되고, 여러 사람의 동적인 움직임은 잘 반영하지 못한다.
