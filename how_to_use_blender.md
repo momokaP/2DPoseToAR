@@ -42,12 +42,15 @@
 ## blender에서 .gltf 파일 export
 - show_ar에서 사용할 애니메이션 캐릭터를 만들기 위해 애니메이션이 적용된 캐릭터를 .gltf 파일로 export 해야한다.
 - (1) blender 화면 위의 file->export->glTF 클릭
+
 ![312](https://github.com/user-attachments/assets/bdd7dbc3-9ef6-4a42-8ab8-cb268ff818dc)
 
 - (2) Format을 glTF Entedded(.gltf)로 설정하고 Export glTF 2.0 버튼 클릭
+
 ![313](https://github.com/user-attachments/assets/e9e1d54e-02a5-4697-9aa3-db092bae1888)
 
 - (3) 확인
+
 ![314](https://github.com/user-attachments/assets/6717a543-28c5-4f2d-8c61-4ffb73b0c04b)
 ![315](https://github.com/user-attachments/assets/372451dc-cfa6-474f-812d-6b8c6ada2a27)
 ![316](https://github.com/user-attachments/assets/28b566a1-db03-4070-9386-ef692295acff)
