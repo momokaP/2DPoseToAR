@@ -45,7 +45,7 @@
 
 ![312](https://github.com/user-attachments/assets/bdd7dbc3-9ef6-4a42-8ab8-cb268ff818dc)
 
-- (2) Format을 glTF Entedded(.gltf)로 설정하고 Export glTF 2.0 버튼 클릭
+- (2) Format을 glTF Embedded(.gltf)로 설정하고 Export glTF 2.0 버튼 클릭
 
 ![313](https://github.com/user-attachments/assets/e9e1d54e-02a5-4697-9aa3-db092bae1888)
 
