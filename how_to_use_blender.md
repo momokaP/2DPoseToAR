@@ -6,7 +6,7 @@
   (최신 버전의 blender는 .bvh 애니메이션이 적용된 캐릭터를 panda3d에서 불러올 때 문제가 생긴다.)
 
 
-## .bvh 적용  
+# .bvh 적용  
 - (1) blender 프로그램을 실행하고 use_bvh.blend 파일을 연다. (use_bvh.blend 파일은 2DPoseToAR 폴더 내에 있다.)
 ![301](https://github.com/user-attachments/assets/5caafb6d-5982-48c4-85e3-28ed9b9b458e)
 ![302](https://github.com/user-attachments/assets/3b206279-ba2e-4659-86b2-b57b5578c7c4)
@@ -39,7 +39,7 @@
 ![311](https://github.com/user-attachments/assets/992afe59-1ac3-447a-ab47-34ef6533b636)
 
 
-## blender에서 .gltf 파일 export
+# blender에서 .gltf 파일 export
 - show_ar에서 사용할 애니메이션 캐릭터를 만들기 위해 애니메이션이 적용된 캐릭터를 .gltf 파일로 export 해야한다.
 - (1) blender 화면 위의 file->export->glTF 클릭
 
