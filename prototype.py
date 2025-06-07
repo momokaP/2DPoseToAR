@@ -10,6 +10,10 @@ import panda3d.core as p3c
 from panda3d.core import LineSegs, NodePath
 from scipy.spatial.transform import Rotation as Rscipy
 import math
+from panda3d.core import DirectionalLight, AmbientLight, Vec4
+from panda3d.core import Vec3, Point3
+from direct.showbase.ShowBase import ShowBase
+from direct.actor.Actor import Actor
 
 # === 카메라 보정 행렬 ===
 K = np.array([[645.74279809, 0, 629.74120962],
@@ -63,17 +67,35 @@ class AxisDemo(ShowBase):
 
 
         # === 3D 캐릭터 로드 ===
-        self.panda = Actor("models/panda-model", {"walk": "models/panda-walk4"})
+        # self.panda = Actor("models/panda-model", {"walk": "models/panda-walk4"})
+        self.panda = Actor("./2d3dartest1.gltf")
         self.panda.reparentTo(self.render)
-        self.panda.setScale(0.002)
+        # self.panda.setScale(0.002)
+        self.panda.setScale(0.1)
         self.panda.setPos(0, 0, 0)  # 카메라 앞으로
-        self.panda.loop("walk")
+        # self.panda.loop("walk")
+        self.panda.loop("dance1")
+        
+        # self.panda2 = Actor("models/panda",{"walk": "models/panda-walk"})
+        # self.panda2.reparentTo(self.render)
+        # self.panda2.setScale(0.1)
+        # self.panda2.setPos(0, 0, 0)  # 카메라 앞으로
+        # self.panda2.loop("walk")
 
-        self.panda2 = Actor("models/panda",{"walk": "models/panda-walk"})
-        self.panda2.reparentTo(self.render)
-        self.panda2.setScale(0.1)
-        self.panda2.setPos(0, 0, 0)  # 카메라 앞으로
-        self.panda2.loop("walk")
+        # === 광원 추가 ===
+
+        # Directional Light (태양광 느낌)
+        dlight = DirectionalLight('dlight')
+        dlight.setColor(Vec4(0.5, 0.5, 0.5, 1))
+        dlnp = self.render.attachNewNode(dlight)
+        dlnp.setHpr(-45, -45, 0)  # 광원 방향 설정
+        self.render.setLight(dlnp)
+
+        # Ambient Light (전체 조명)
+        alight = AmbientLight('alight')
+        alight.setColor(Vec4(0.5, 0.5, 0.5, 1))
+        alnp = self.render.attachNewNode(alight)
+        self.render.setLight(alnp)
 
         # 축을 그리는 함수 호출
         self.draw_axes()

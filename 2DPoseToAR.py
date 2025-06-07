@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import tkinter.font as tkFont
 
+from convert_video_to_bvh import process_video_to_bvh
+from show_ar import Show_AR
+
 class PoseToARApp:
     def __init__(self, root):
         self.root = root
@@ -64,12 +67,12 @@ class PoseToARApp:
         btn1.pack(side="left")
 
         # bvh 출력 경로
-        file_frame2 = tk.LabelFrame(container, text=" 출력될 .bvh 경로 ", bd=5, relief="ridge", font=("TkDefaultFont", 14, "bold"), pady=10, padx=10)
-        file_frame2.pack(pady=10, padx=10, fill="x")
-        self.entry2 = tk.Entry(file_frame2, font=("TkDefaultFont", 12), width=40)
-        self.entry2.pack(side="left", padx=(0, 10))
-        btn2 = tk.Button(file_frame2, text="폴더 선택", command=lambda: self.browse_directory(self.entry2))
-        btn2.pack(side="left")
+        # file_frame2 = tk.LabelFrame(container, text=" 출력될 .bvh 경로 ", bd=5, relief="ridge", font=("TkDefaultFont", 14, "bold"), pady=10, padx=10)
+        # file_frame2.pack(pady=10, padx=10, fill="x")
+        # self.entry2 = tk.Entry(file_frame2, font=("TkDefaultFont", 12), width=40)
+        # self.entry2.pack(side="left", padx=(0, 10))
+        # btn2 = tk.Button(file_frame2, text="폴더 선택", command=lambda: self.browse_directory(self.entry2))
+        # btn2.pack(side="left")
 
         # 실행 버튼
         btn = tk.Button(container, text="영상에서 포즈 추출하고 .bvh로 변환", command=self.convert_video_to_bvh)
@@ -115,14 +118,19 @@ class PoseToARApp:
 
     def convert_video_to_bvh(self):
         video_path = self.entry1.get()
-        output_path = self.entry2.get()
+
+        output_path = process_video_to_bvh(video_path)
+
         print(f"[bvh 변환] 영상: {video_path} → 저장: {output_path}")
-        messagebox.showinfo("완료", ".bvh 변환 완료!")
+        messagebox.showinfo("완료", f".bvh 변환 완료!")
 
     def show_ar(self):
         gltf_path = self.entry3.get()
         video_path = self.entry4.get() if self.check_var1.get() else None
         output_path = self.entry5.get() if self.check_var3.get() else None
+
+        
+            
         print(f"[AR 실행] 모델: {gltf_path} | 영상: {video_path or '웹캠'} | 저장: {output_path or 'X'}")
         messagebox.showinfo("AR 실행", "AR 출력 시작!")
 
