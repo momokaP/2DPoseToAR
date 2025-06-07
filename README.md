@@ -155,9 +155,11 @@ board_cellsize=0.023
 
 본 프로젝트에서 쓰인 영상은
 
-[Squat.mp4](https://commons.wikimedia.org/wiki/File:Squat_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
+Squat.mp4
+[https://commons.wikimedia.org/wiki/File:Squat_-_exercise_demonstration_video.webm](https://commons.wikimedia.org/wiki/File:Squat_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
 
-[Deadlift.mp4](https://commons.wikimedia.org/wiki/File:Deadlift_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
+Deadlift.mp4
+[https://commons.wikimedia.org/wiki/File:Deadlift_-_exercise_demonstration_video.webm](https://commons.wikimedia.org/wiki/File:Deadlift_-_exercise_demonstration_video.webm) (Creative Commons Attribution 3.0 Unported license)
 
 의 것을 사용하였다
 
