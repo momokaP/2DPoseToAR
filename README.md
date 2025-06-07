@@ -1,6 +1,7 @@
 # 2DtoAR
 - 2DtoAR는 사람이 나오는 영상으로부터 3D 관절 좌표를 추출하고,
 - 애니메이션이 적용된 3D 캐릭터를 AR로 보여줍니다.
+- BVHConverter.py, ARCalib.py 파일을 통하여 기능을 제공합니다.
 
 # 주요 기능
 - [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko), [VideoPose3D](https://github.com/facebookresearch/VideoPose3D)를 이용하여 사람이 나오는 영상으로부터 3D 관절 좌표를 추출하여 .bvh 파일을 생성합니다.
