@@ -95,7 +95,7 @@ board_cellsize=0.020
 
 ![113](https://github.com/user-attachments/assets/be6cf71f-204e-41ca-b64c-74abe774c02a)
 
-- 촬영한 영상 파일을 입력하고, 체스보드 패턴 (colsxrows), 보드 셀 크기를 입력한다.
+- 촬영한 영상 파일을 입력하고, 체스보드 패턴 (cols x rows), 보드 셀 크기를 입력한다.
 
   체스보드 패턴은 체스보드의 교차점을 기준으로 한다.
 
