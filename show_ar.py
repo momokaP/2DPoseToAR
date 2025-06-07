@@ -7,6 +7,7 @@ from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenImage import OnscreenImage
 from direct.actor.Actor import Actor
 
+from panda3d.core import CompassEffect
 from panda3d.core import Texture, TransparencyAttrib
 from panda3d.core import LineSegs, NodePath
 from panda3d.core import DirectionalLight, AmbientLight, Vec4
@@ -300,6 +301,8 @@ class AxisDemo(ShowBase):
         axis_np = NodePath(axis_node)
         # axis_np.reparentTo(self.render)
         axis_np.reparentTo(self.panda)
+        effect = CompassEffect.make(self.render, CompassEffect.PScale)
+        axis_np.setEffect(effect) 
 
     def update_frame(self, task):
         if self.is_paused:
@@ -423,8 +426,8 @@ def Show_AR(
 
 if __name__ == "__main__":  
     Show_AR(
-        video_path1="./calv2-1.mp4",
-        gltf_path1="./prototypetest1.gltf",
+        video_path1="./test_video.mp4",
+        gltf_path1="./test.gltf",
         animation1="dance",
         ShowAxis1=True,
         config_path="config.txt"
