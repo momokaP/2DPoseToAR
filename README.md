@@ -40,7 +40,7 @@
 ![221](https://github.com/user-attachments/assets/8ba1d054-9469-43a8-a968-b5715b3fc59e)
 
 - '영상에서 포즈 추출하고 .bvh로 변환' 버튼을 클릭한다.
-- 2DPoseToAR.py와 같은 경로에서 생성된 .bvh 파일을 확인한다.
+- BVHConverter.py와 같은 경로에서 생성된 .bvh 파일을 확인한다.
 
   (시간이 오래 걸린다.)
 
@@ -91,7 +91,7 @@ board_cellsize=0.020
 #### 사용 방법
 - Calibration을 위한 체스보드를 준비한다. [Calibration Checkerboard Collection](https://markhedleyjones.com/projects/calibration-checkerboard-collection)에서 체스보드를 구할 수 있다.
 - Calibration을 위한 체스보드가 포함된 영상을 촬영한다.
-- 2DPoseToAR.py를 실행하고 'Calibration을' 탭을 선택한다.
+- 2ARCalib.py를 실행하고 'Calibration을' 탭을 선택한다.
 
 ![113](https://github.com/user-attachments/assets/be6cf71f-204e-41ca-b64c-74abe774c02a)
 
@@ -115,7 +115,7 @@ board_cellsize=0.020
 
   ![403](https://github.com/user-attachments/assets/f31d7c3a-ac97-474e-af9c-ce38a0fc3cd3)
 
-- Esc를 누르면 영상이 종료되고,  영상 이름에 접미사로 _calibration_result.txt가 붙은 파일이 2DPoseToAR.py와의 같은 경로에 생성된다. 파일 내용은 다음과 같은 형식이다.
+- Esc를 누르면 영상이 종료되고,  영상 이름에 접미사로 _calibration_result.txt가 붙은 파일이 ARCalib.py와의 같은 경로에 생성된다. 파일 내용은 다음과 같은 형식이다.
 ```
 ## Camera Calibration Results
 * The number of selected images = 1
