@@ -30,12 +30,12 @@
 - (4) VideoPose3D가 생성한 3D 관절 키포인트를 .bvh 형식으로 변환한다.
  
 #### 사용 방법
-- 2DPoseToAR.py를 실행한다. (mediapipe의 import 시간이 길어서 어느정도 기다려야 창이 나온다.)
+- 2DPoseToAR.py를 실행한다.
 - '2d to .bvh' 탭을 선택하고, 포즈 영상 파일 경로를 선택한다.
 ![101](https://github.com/user-attachments/assets/bef0e53f-8a17-41a5-842f-6497b2e90a27)
 ![201](https://github.com/user-attachments/assets/63dde318-299a-4ef0-b2bc-2be13c00f01f)
 - '영상에서 포즈 추출하고 .bvh로 변환' 버튼을 클릭한다.
-- 2DPoseToAR.py와 같은 경로에서 생성된 .bvh 파일을 확인한다. (시간이 어느정도 걸린다.)
+- 2DPoseToAR.py와 같은 경로에서 생성된 .bvh 파일을 확인한다. (시간이 오래 걸린다...)
 ![202](https://github.com/user-attachments/assets/702d8aa0-ed3a-4a29-b096-2f216d4eeaaf)
 
 #### .bvh 파일 이용하기
