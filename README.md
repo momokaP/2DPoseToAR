@@ -5,7 +5,11 @@
 
 https://github.com/user-attachments/assets/02e9fef5-e99a-49d6-b55c-15709aeda32d
 
-https://github.com/user-attachments/assets/653508fd-b959-4afa-9edd-850a9e2022b1
+이 운동 영상을 이용하여 3D 관절 좌표를 추출하고,
+
+https://github.com/user-attachments/assets/2ac206f4-ceba-49d7-815c-14fb3a0f2bca
+
+애니메이션이 적용된 3D 캐릭터를 AR로 보여줍니다.
 
 # 주요 기능
 - [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko), [VideoPose3D](https://github.com/facebookresearch/VideoPose3D)를 이용하여 사람이 나오는 영상으로부터 3D 관절 좌표를 추출하여 .bvh 파일을 생성합니다.
@@ -139,7 +143,9 @@ board_cellsize=0.023
 
 # 시연 영상
 
+https://github.com/user-attachments/assets/adac9ac1-5cd0-4454-9e9d-bc8047bf853c
 
+https://github.com/user-attachments/assets/b3381f36-f340-478e-a771-86b99e970c46
 
 # 참고자료/reference
 [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko)의 기능을 사용하였다.
