@@ -6,23 +6,23 @@
 - [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=ko), [VideoPose3D](https://github.com/facebookresearch/VideoPose3D)를 이용하여 사람이 나오는 영상으로부터 3D 관절 좌표를 추출하여 .bvh 파일을 생성합니다.
 
   (.bvh 파일은 Biovision Hierarchy의 약자이며, 주로 모션 캡처 데이터를 저장하고, 캐릭터의 움직임을 재현하는 데 사용됩니다.)
-![101](https://github.com/user-attachments/assets/e4fd8576-31ce-4a81-a800-1b3bed66c663)
-
+  
+![111](https://github.com/user-attachments/assets/24d6ce50-f767-46a1-8d6f-ecaed1beeb47)
 
 - [panda3d](https://www.panda3d.org/)를 이용하여 애니메이션이 적용된 3D 캐릭터를 AR로 보여줍니다. (현재는 .gltf 파일만 가능합니다.)
-![102](https://github.com/user-attachments/assets/e3f42eae-114d-402e-93c1-43380d808224)
-
+- 
+![112](https://github.com/user-attachments/assets/ce0acf94-597b-461e-849f-3d87e8311fa0)
 
 - AR을 적용 할 때 필요한 카메라 정보과 체스보드 설정을 구할 수 있는 Calibration을 지원합니다.
-![103](https://github.com/user-attachments/assets/f9091b34-de30-4932-83a7-2d56994701da)
 
+![113](https://github.com/user-attachments/assets/7c29e9a9-10ff-45ed-8b7f-d0dae213a70c)
 
 # 설치 방법
 
 사용한 라이브러리들
 
 # 상세 기능
-## 1. convert_video_to_bvh
+## 1. BVH Converter
 #### 내부 동작
 - (1) mediapipe를 이용하여 영상으로부터 2D 관절 키포인트를 추출한다.
 - (2) 2D 관절 키포인트를 VideoPose3D에서 사용할 수 있는 형식으로 변환한다.
@@ -30,28 +30,39 @@
 - (4) VideoPose3D가 생성한 3D 관절 키포인트를 .bvh 형식으로 변환한다.
  
 #### 사용 방법
-- 2DPoseToAR.py를 실행한다.
-- '2d to .bvh' 탭을 선택하고, 포즈 영상 파일 경로를 선택한다.
-![101](https://github.com/user-attachments/assets/bef0e53f-8a17-41a5-842f-6497b2e90a27)
-![201](https://github.com/user-attachments/assets/63dde318-299a-4ef0-b2bc-2be13c00f01f)
+- BVHConverter.py를 실행하고 포즈 영상 파일 경로를 선택한다.
+-
+- (mediapipe를 import 할때 시간이 오래 걸려서 실행 시간이 오래 걸린다.)
+
+![111](https://github.com/user-attachments/assets/e60c608e-6dd1-425b-939a-79e43729c051)
+
+![221](https://github.com/user-attachments/assets/8ba1d054-9469-43a8-a968-b5715b3fc59e)
+
 - '영상에서 포즈 추출하고 .bvh로 변환' 버튼을 클릭한다.
-- 2DPoseToAR.py와 같은 경로에서 생성된 .bvh 파일을 확인한다. (시간이 오래 걸린다...)
-![202](https://github.com/user-attachments/assets/702d8aa0-ed3a-4a29-b096-2f216d4eeaaf)
+- 2DPoseToAR.py와 같은 경로에서 생성된 .bvh 파일을 확인한다.
+
+  (시간이 오래 걸린다.)
+
+![222](https://github.com/user-attachments/assets/21aac3ed-1346-477c-a055-32dd56e4e97d)
 
 #### .bvh 파일 이용하기
 blender을 이용하여 .bvh 파일을 사용할 수 있다.
 
 blender의 간단한 사용방법은 [how_to_use_blender.md](https://github.com/momokaP/2DPoseToAR/blob/main/how_to_use_blender.md)에 작성하였다.
 
-## 2. show_AR
-- show_AR은 애니메이션이 적용된 gltf 형식의 3D 캐릭터를 현실의 영상에 보여주는 기능을 한다.
+## 2. ARCalib - Show_AR
+- Show_AR은 애니메이션이 적용된 gltf 형식의 3D 캐릭터를 현실의 영상에 보여주는 기능을 한다.
 #### 사용 방법
-- 2DPoseToAR.py를 실행하고 'show AR' 탭을 선택한다.
+- ARCalib.py를 실행하고 'Show AR' 탭을 선택한다.
 
-![102](https://github.com/user-attachments/assets/62b0d6b8-fbc4-42a1-8a48-3f422f6fc371)
+![112](https://github.com/user-attachments/assets/d1f38c7c-f4e7-43c3-a6d9-8bde398442df)
+
 - gltf 파일, 영상 파일, 카메라 체스보드 설정 파일, 애니메이션 이름을 입력한 뒤 'AR로 보여주기' 버튼을 누르면 AR이 적용된 영상이 나온다.
 
-![401](https://github.com/user-attachments/assets/0e94c36b-a944-47bc-9e97-f3a5d6c44b19)
+![441](https://github.com/user-attachments/assets/26598130-7e0b-467b-a450-03be06350011)
+
+![442](https://github.com/user-attachments/assets/1c450475-f691-48c2-95e2-d9cbfdf2cf41)
+
 - 영상은 calibration을 적용하기 위한 체스보드가 있어야 한다.
 - 카메라 체스보드 설정 파일의 내용은 다음과 같다. 카메라 체스보드의 설정 내용은 Calibration을 통해 구할 수 있다.
 ```
@@ -66,6 +77,12 @@ board_cellsize=0.020
 
 (blender에서 import 한 gltf 파일의 예)
 
+- AR이 적용된 영상에서 a, s, d, f 키로 캐릭터를 xy평면에 대해 이동 시킬 수 있고, q, e 키를 이용하여 z축 기준으로 회전시킬 수 있다.
+
+  o, p 키를 이용하여 캐릭터의 크기를 조절할 수 있으며, r 키를 이용하여 원래의 위치, 회전, 크기으로 되돌릴 수 있다.
+
+  스페이스 바를 이용하여 영상의 재생, 정지가 가능하다.
+
 ## 3. Calibration
 - Calibration은 show_AR에서 입력되는 카메라 체스보드 설정 파일의 내용을 구하기 위해 사용할 수 있다.
 - [https://github.com/mint-lab/3dv_tutorial/blob/master/examples/camera_calibration.py](https://github.com/mint-lab/3dv_tutorial/blob/master/examples/camera_calibration.py)의 코드를 사용하였다.
@@ -75,7 +92,7 @@ board_cellsize=0.020
 - Calibration을 위한 체스보드가 포함된 영상을 촬영한다.
 - 2DPoseToAR.py를 실행하고 'Calibration을' 탭을 선택한다.
 
-![103](https://github.com/user-attachments/assets/2479838f-d66f-466c-8742-d6a1bea94925)
+![113](https://github.com/user-attachments/assets/be6cf71f-204e-41ca-b64c-74abe774c02a)
 
 - 촬영한 영상 파일을 입력하고, 체스보드 패턴 (colsxrows), 보드 셀 크기를 입력한다.
 
@@ -115,6 +132,18 @@ board_pattern=(10, 7)
 board_cellsize=0.023
 ```
 
+# 시연 영상
+
+
+
 # 참고자료/reference
 
+
 # 향후 개선 사항
+- show AR에서 panda3d의 좌표계와 Calibration을 통해 구한 현실 영상의 좌표계가 다르다. 
+
+  좌표계들을 맞춰보려 노력하였지만, 카메라의 방향 정도만 맞췄고 위치에 대해서는 서로 차이가 있다.
+
+  특히 카메라에서 roll이 발생할 때 좌표계의 차이가 두드러진다.
+
+  이러한 좌표계의 차이점을 개선시켜야한다.
