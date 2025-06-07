@@ -40,6 +40,7 @@
 
 #### .bvh 파일 이용하기
 blender을 이용하여 .bvh 파일을 사용할 수 있다.
+
 blender의 간단한 사용방법은 [how_to_use_blender.md](https://github.com/momokaP/2DPoseToAR/blob/main/how_to_use_blender.md)에 작성하였다.
 
 ## 2. show_ar
