@@ -35,6 +35,8 @@
 
   convert_video_to_bvh에서 만든 .bvh파일은 애니메이션 관절이 반대로 뒤집혀져 있으므로, y축 기준으로 180도 회전시킨다.
 
+  애니메이션 관절과 캐릭터가 서로 맞지 않을 때 위치, 회전, 크기를 조절하여 최대한 서로 맞춰지도록 하면 좋다.
+
 ![310](https://github.com/user-attachments/assets/27b940d3-da36-41f3-ac9e-099ba76b7f34)
 ![311](https://github.com/user-attachments/assets/992afe59-1ac3-447a-ab47-34ef6533b636)
 
