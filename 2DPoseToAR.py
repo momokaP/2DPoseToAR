@@ -5,7 +5,6 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import tkinter.font as tkFont
 
-from convert_video_to_bvh import process_video_to_bvh
 from show_ar import Show_AR
 from Camera_Calibration import run_camera_calibration
 
@@ -185,6 +184,8 @@ class PoseToARApp:
         start_btn.pack(pady=20)
 
     def convert_video_to_bvh(self):
+        from convert_video_to_bvh import process_video_to_bvh
+        
         try:
             video_path = self.entry1.get()
         except Exception as e:

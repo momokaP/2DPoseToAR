@@ -123,7 +123,7 @@ class AxisDemo(ShowBase):
             self.panda.loop("walk")
         else:
             self.panda = Actor(gltf_path)
-            self.panda.setScale(2)
+            self.panda.setScale(0.02)
             self.panda.loop(self.animation)
         
         self.panda.setPos(0, 0, 0)
