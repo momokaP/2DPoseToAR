@@ -28,7 +28,10 @@
 - (6) .bvh의 애니메이션과 캐릭터가 잘 연결되면 Pose를 선택하고 블랜더 화면 오른쪽의 사람 모양의 아이콘(object data properties)을 클릭한 뒤, Pose Position을 클릭하고 애니메이션을 재생하여 움직임을 관찰한다.
 ![309](https://github.com/user-attachments/assets/1056aa3a-d3aa-4720-ab36-ae2afbb36a05)
 
-- (7) 블랜더 화면 오른쪽 아래의 노란 사각형 모양의 아이콘(object properties)를 클릭하면 캐릭터의 위치, 회전, 크기를 조절할 수 있다.
+- (7) 애니메이션의 이름을 지정한다. show_ar을 사용할 때 이 애니메이션 이름을 입력해야 한다. 여기서는 animation으로 하였다.
+![333](https://github.com/user-attachments/assets/8954e451-9603-415b-924a-c8338d82316b)
+
+- (8) 블랜더 화면 오른쪽 아래의 노란 사각형 모양의 아이콘(object properties)를 클릭하면 캐릭터의 위치, 회전, 크기를 조절할 수 있다.
 
   convert_video_to_bvh에서 만든 .bvh파일은 애니메이션 관절이 반대로 뒤집혀져 있으므로, y축 기준으로 180도 회전시킨다.
 
