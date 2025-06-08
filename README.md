@@ -33,17 +33,19 @@ https://github.com/user-attachments/assets/2ac206f4-ceba-49d7-815c-14fb3a0f2bca
 2. 필요한 라이브러리들을 설치한다.
    실행 당시 파이썬 버전 Python 3.11.5
 
-   사용한 라이브러리들 cv2(opencv-contrib-python, 4.11.0.86), numpy(1.26.4), mediapipe(0.10.18)(Python 3.13 이상인 경우에 설치가 안된다. Python 3.10을 권장한다.)
+   사용한 라이브러리들 cv2(opencv-contrib-python, 4.11.0.86), numpy(1.26.4), mediapipe(0.10.18)
+
+   (Python 3.13 이상인 경우에 mediapipe 설치가 안된다. Python 3.10을 권장한다.)
 
    ```
    pip install opencv-contrib-python
    pip install mediapipe
    ```
-3. panda3d를 설치한다.
+4. panda3d를 설치한다.
    [https://www.panda3d.org/](https://www.panda3d.org/)에서 SDK를 설치하고,
    파이썬에서 pip install panda3d 으로 panda3d를 설치한다.
 
-4. BVHConverter.py 또는 ARCalib.py를 실행한다.
+5. BVHConverter.py 또는 ARCalib.py를 실행한다.
 
 
 # 상세 기능
