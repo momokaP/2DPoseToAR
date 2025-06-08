@@ -44,6 +44,8 @@ https://github.com/user-attachments/assets/2ac206f4-ceba-49d7-815c-14fb3a0f2bca
    [https://www.panda3d.org/](https://www.panda3d.org/)에서 SDK를 설치하고,
    파이썬에서 pip install panda3d 으로 panda3d를 설치한다.
 
+4. BVHConverter.py 또는 ARCalib.py를 실행한다.
+
 
 # 상세 기능
 ## 1. BVH Converter
