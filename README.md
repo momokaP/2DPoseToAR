@@ -33,7 +33,7 @@ https://github.com/user-attachments/assets/2ac206f4-ceba-49d7-815c-14fb3a0f2bca
 2. 필요한 라이브러리들을 설치한다.
    실행 당시 파이썬 버전 Python 3.11.5
 
-   사용한 라이브러리들 cv2(opencv-contrib-python, 4.11.0.86), numpy(1.26.4), mediapipe(0.10.18)
+   사용한 라이브러리들 numpy, cv2(opencv-contrib-python, 4.11.0.86),  mediapipe(0.10.18)
 
    (Python 3.13 이상인 경우에 mediapipe 설치가 안된다. Python 3.10을 권장한다.)
 
